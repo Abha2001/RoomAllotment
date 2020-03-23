@@ -1,0 +1,25 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Slots</title>
+</head>
+<body>
+    <link rel="stylesheet" type="text/css" href="../static/css/bookingForm.css">
+    <div class="container2">
+        <div class="form-container2">
+            <div class="img">
+                <img class='img' src="{% static 'images/list1.svg'%}">
+            </div>
+            <span>ADD SLOTS</span>
+            <form class='form' method='post'>
+                {%csrf_token%}
+                {{form}}
+                <input class="btn" type="submit" value="submit" name="submit" id="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block content%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../static/css/bookingForm.css">
+<div class='container'>
+    <div class="list-container">
+        <div class="img">
+            <img class='img' src="{% static 'images/list1.svg'%}">
+        </div>
+        <span>LIST OF ROOMS</span>
+        <div class='list'>
+            <table class="table table-striped table-dark table-hover">
+                <tr>
+                    <th>Room No</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            {%for i in roomList%}
+            <tr>
+                <td>{{i.roomNo}}</td>
+                <td>{{i.startTime}}</td>
+                <td>{{i.endTime}}</td>
+            </tr>
+            {%endfor%}
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="form-container">
+            <div class="img">
+                <img class='img' src="{% static 'images/calendar.svg'%}">
+            </div>
+            <span>ROOM BOOKING FORM</span>
+            {%if message2%}
+                <div class="alert">
+                    {{message2}}
+                </div>
+            {%endif%}
+            {% if message%}
+                <div class="alert">
+                        {{message}} 
+                </div>
+            {%endif%}
+            <form class="form" method="post">
+                {%csrf_token%}
+                {{form}}
+                <input class="btn" type="submit" value="submit" name="submit" id="submit">
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
