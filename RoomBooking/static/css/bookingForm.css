@@ -12,13 +12,13 @@
       text-align: center;
       margin: 10px;
     }
-    .container span, .container2 span{
+    .container span, .container3 span{
       color: darkblue;
       font-size: 30px;
     }
   .list-container{
-    margin: 30px;
-    padding: 10px;
+    margin: 10px;
+    padding: 0px;
   }
 
 .table{
@@ -49,9 +49,11 @@ img{
   
 }
     .form-container{ 
-      padding: 10px;
+      padding: 20px;
       margin: 50px;
-      margin-left: 100px; 
+      margin-left: 100px;
+      background-color: white;
+      box-shadow: inset #553187 4px 4px 7px 3px;
     }
 .form {
   display: grid;
@@ -115,7 +117,7 @@ img{
     font-size:20px;
 }
 
-.container2{
+.container3{
   padding: 50px;
   text-align: center;
   margin-left: 500px;
@@ -124,5 +126,5 @@ img{
 .form-container2{
   box-shadow:darkblue inset 3px 3px 5px 2px;
   padding: 30px;
-   
+   background-color: white;
 }

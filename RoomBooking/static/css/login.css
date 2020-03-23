@@ -32,6 +32,10 @@
     width: 360px;
   }
   
+  .form{
+    box-shadow:#553187 inset 3px 3px 5px 2px;
+  }
+
   .profile
   {
      width: 200px;

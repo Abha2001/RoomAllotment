@@ -1,35 +1,24 @@
+{%extends 'base.html'%}
+{%block content%}
 {%load static%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-<body style="background-image: url('../static/images/bg.jpg');"> 
-    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <nav class="navbar navbar-dark" style="background-color: #553187;">
-        <h1>Room Booking</h1>
-        <div class='list-container'>
-            <ul>
-                {%if user.is_authenticated%}
-                    <li><a href="logout">Logout</a></li>
-                {%else%}
-                    <li><a href="login">Login</a></li>
-                    <li><a href="signup">Signup</a></li>
-                {%endif%}
-            </ul>
+
+    <div class="container1">
+        <div class="image">
+            <img class='img' src="{% static 'images/bg.jpg'%}">
         </div>
-    </nav>
-    <div class="button">
-        {%if user.is_superuser%}
-        <a href="addSlot">Add Slots</a>
-        {%endif%}
-        <a href="bookRoom">Book</a>
+        <div class="container2">
+            <div class="description">
+                <p>
+                    This is a website to book rooms. There is a list of rooms along with the timings during which they are available. 
+                </p>
+            </div>
+            <div class="button">
+                {%if user.is_superuser%}
+                <a href="addSlot">Add a new Slot</a>
+                {%endif%}
+                <a href="bookRoom">Book a room</a>
+            </div>
+        </div>
     </div>
-    {%block content%}
     {%endblock%}
-</body>
-</html>
+    

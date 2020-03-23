@@ -24,6 +24,8 @@
   }
   
   form{ 
+    background-color: white;
+    box-shadow:#553187 inset 3px 3px 5px 2px;
     margin-left: 10px;
     padding: 30px;
     width: 360px;
@@ -39,6 +41,10 @@ form h2{
   text-transform: uppercase;
   margin: 15px 0;
   color:#333;
+}
+
+.room_image{
+  background-color: white;
 }
 
 input[type="submit"]{
