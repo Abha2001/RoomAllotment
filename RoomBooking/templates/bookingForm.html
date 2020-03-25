@@ -45,8 +45,16 @@
             <form class="form" method="post">
                 {%csrf_token%}
                 {{form}}
-                <input class="btn" type="submit" value="submit" name="submit" id="submit">
+                {%if user.is_authenticated%}
+                    <input class="btn" type="submit" value="submit" name="submit" id="submit">
+                {%else%}
             </form>
+            <div class="alert-container">
+                <div class="alert">
+                    <p>You are not logged in!</p>
+                </div>
+            </div>
+            {%endif%}
         </div>
     </div>
 </div>

@@ -37,7 +37,7 @@ def logout_view(request):
     logout(request)
     return redirect('index')
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def bookRoom(request):
     roomList=getRoomList()
     message2=False
@@ -49,10 +49,9 @@ def bookRoom(request):
             availableObject=Available.objects.get(id=(request.POST['Time']))
             startTime=availableObject.startTime
             endTime=availableObject.endTime
-            roomAvailable=availableObject.RoomNo
-            roomNo=request.POST['roomAllotted']
-            getRoomNo=Room.objects.get(id=roomNo).roomNo
-            if int(str(roomAvailable))==int(str(getRoomNo)):
+            roomAvailable=availableObject.roomNo
+            roomNo=request.POST['roomNo']
+            if int(str(roomAvailable))==int(str(roomNo)):
                 isVacant=checkVacancy(Date,startTime,endTime,roomNo)
                 if isVacant==True:
                     form.save()
@@ -72,7 +71,7 @@ def bookRoom(request):
     'message2':message2})
 
 def checkVacancy(Date,startTime,endTime,roomNo):
-    sameRoom=Guest.objects.filter(roomAllotted=roomNo)
+    sameRoom=Guest.objects.filter(roomNo=roomNo)
     
     sameDate=sameRoom.filter(Date=Date)
     
@@ -119,7 +118,7 @@ def getRoomList():
     
     endTimeList=[i.endTime.strftime('%H:%M:%S') for i in message]
     
-    roomNoList=[str(i.RoomNo) for i in message]
+    roomNoList=[str(i.roomNo) for i in message]
     
     roomList=[{'roomNo':roomNoList[i], 'startTime':startTimeList[i],
     'endTime':endTimeList[i]} for i in range (len(roomNoList))]
