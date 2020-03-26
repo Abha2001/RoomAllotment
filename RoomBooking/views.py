@@ -37,7 +37,6 @@ def logout_view(request):
     logout(request)
     return redirect('index')
 
-#@login_required(login_url='login')
 def bookRoom(request):
     roomList=getRoomList()
     message2=False
@@ -46,11 +45,17 @@ def bookRoom(request):
         form=BookingForm(request.POST)
         if form.is_valid:
             Date=request.POST['Date']
+
             availableObject=Available.objects.get(id=(request.POST['Time']))
+            
             startTime=availableObject.startTime
+            
             endTime=availableObject.endTime
+            
             roomAvailable=availableObject.roomNo
+            
             roomNo=request.POST['roomNo']
+            
             if int(str(roomAvailable))==int(str(roomNo)):
                 isVacant=checkVacancy(Date,startTime,endTime,roomNo)
                 if isVacant==True:
@@ -58,10 +63,8 @@ def bookRoom(request):
                     return render(request,'../templates/thanks.html')
                 else:
                     message='The room is  booked! Please make a different choice!'
-                    #freeroom=checkFreeRooms(Date,startTime,endTime)
-                    # return render(request,'../templates/changeRoom.html',{'Booked':freeroom})
+                   
             else:
-                # message2=getRoomNo
                 message2="The room you want is not available in the desired slot. Please choose from the given list"
     else:
         form=BookingForm()
@@ -80,26 +83,6 @@ def checkVacancy(Date,startTime,endTime,roomNo):
     if sameTime:
         return False
     return True
-                        
-# def checkFreeRooms(Date,startTime,endTime):
-    
-#     sameDate=Guest.objects.filter(Date=Date)
-    
-#     sameTime=sameDate.filter(Time__startTime= startTime,Time__endTime=endTime) 
-
-#     occupiedRooms=[]
-#     for i in sameTime:
-#         occupiedRooms.append(int(str(i.roomAllotted)))
-#     Rooms=Room.objects.all()
-#     allrooms=[]
-#     for room in Rooms:
-#         allrooms.append(int(str(room.roomNo)))
-#     freerooms=[i for i in allrooms if i not in occupiedRooms]
-#     # for i in allrooms:
-#     #     if i not in occupiedRooms:
-#     #         freerooms.append(i)
-#     return freerooms
-#     # return condition
 
 def addSlot(request):
     if request.method=='POST':
