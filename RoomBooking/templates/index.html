@@ -17,6 +17,9 @@
                 <a href="addSlot">Add a new Slot</a>
                 {%endif%}
                 <a href="bookRoom">Book a room</a>
+                {%if user.is_authenticated%}
+                <a href="viewBookings">View Your Bookings</a>
+                {%endif%}
             </div>
         </div>
     </div>

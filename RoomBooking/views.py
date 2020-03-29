@@ -45,27 +45,37 @@ def bookRoom(request):
         form=BookingForm(request.POST)
         if form.is_valid:
             Date=request.POST['Date']
-
+            
             availableObject=Available.objects.get(id=(request.POST['Time']))
             
             startTime=availableObject.startTime
             
             endTime=availableObject.endTime
             
-            roomAvailable=availableObject.roomNo
+            todayDate=datetime.datetime.today()
+
+            requiredDate=Date+" "+str(startTime)
             
-            roomNo=request.POST['roomNo']
+            if datetime.datetime.strptime(requiredDate,'%Y-%m-%d %H:%M:%S')<todayDate:
+                message="The time you have entered has passed!"
             
-            if int(str(roomAvailable))==int(str(roomNo)):
-                isVacant=checkVacancy(Date,startTime,endTime,roomNo)
-                if isVacant==True:
-                    form.save()
-                    return render(request,'../templates/thanks.html')
-                else:
-                    message='The room is  booked! Please make a different choice!'
-                   
             else:
-                message2="The room you want is not available in the desired slot. Please choose from the given list"
+                roomAvailable=availableObject.roomNo
+                
+                roomNo=request.POST['roomNo']
+                
+                if int(str(roomAvailable))==int(str(roomNo)):
+                    isVacant=checkVacancy(Date,startTime,endTime,roomNo)
+                    if isVacant==True:
+                        instance=form.save(commit=False)
+                        instance.user=request.user
+                        instance.save()
+                        return render(request,'../templates/thanks.html')
+                    else:
+                        message='The room is  booked! Please make a different choice!'
+                    
+                else:
+                    message2="The room you want is not available in the desired slot. Please choose from the given list"
     else:
         form=BookingForm()
     return render(request,'../templates/bookingForm.html',{'form':form,
@@ -107,3 +117,10 @@ def getRoomList():
     'endTime':endTimeList[i]} for i in range (len(roomNoList))]
 
     return roomList
+
+def viewBookings(request):
+    instance=False
+    currentUser=request.user
+    instance=Guest.objects.filter(user=currentUser)
+    return render(request,'../templates/viewBookings.html',{'instance':instance})
+

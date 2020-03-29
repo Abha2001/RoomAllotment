@@ -4,7 +4,7 @@ from .models import *
 class BookingForm(ModelForm):
     class Meta:
         model=Guest
-        fields='__all__'
+        exclude=['user']
 
 class SlotsForm(ModelForm):
     class Meta:

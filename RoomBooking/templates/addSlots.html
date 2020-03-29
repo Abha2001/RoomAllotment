@@ -5,15 +5,21 @@
     <link rel="stylesheet" type="text/css" href="../static/css/bookingForm.css">
     <div class="container3">
         <div class="form-container2">
-            <div class="img">
-                <img class='img' src="{% static 'images/list1.svg'%}">
-            </div>
-            <span>ADD SLOTS</span>
-            <form class='form' method='post'>
-                {%csrf_token%}
-                {{form}}
-                <input class="btn" type="submit" value="submit" name="submit" id="submit">
-            </form>
+            {%if user.is_superuser%}
+                <div class="img">
+                    <img class='img' src="{% static 'images/list1.svg'%}">
+                </div>
+                <span>ADD SLOTS</span>
+                <form class='form' method='post'>
+                    {%csrf_token%}
+                    {{form}}
+                    <input class="btn" type="submit" value="submit" name="submit" id="submit">
+                </form>
+            {%else%}
+                <div>
+                    <h5>You don't have required access!</h5>
+                </div>
+            {%endif%}
         </div>
     </div>
     {%endblock%}

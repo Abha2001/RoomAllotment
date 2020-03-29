@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../static/css/bookingForm.css">
+<div class='container'>
+    <div class="list-container">
+        <div class="img">
+            <img class='img' src="{% static 'images/list1.svg'%}">
+        </div>
+        <span>BOOKED ROOMS</span>
+        <div class='list'>
+            <table class="table table-striped table-dark table-hover">
+                {%if instance%}
+                    <tr>
+                        <th>Name</th>
+                        <th>Room No</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                    {%for i in instance%}
+                    <tr>
+                        <td>{{i.Name}}</td>
+                        <td>{{i.roomNo}}</td>
+                        <td>{{i.Date}}</td>
+                        <td>{{i.Time}}</td>
+                    </tr>
+                    {%endfor%}
+                {%else%}
+                <div class="form-container">
+                    <h5>You have not made any bookings yet!</h5>
+                </div>
+                {%endif%}
+            </table>
+        </div>
+    </div>
+</div>
+{%endblock%}
