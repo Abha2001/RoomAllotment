@@ -23,6 +23,10 @@
                 {% csrf_token %}
                 {{ form }}
                 <input type="submit" value="SignUp">
+                <br>
+                <p>OR</p>
+                <br>
+                <button class="btn"><a href="{% url 'social:begin' 'google-oauth2' %}">Sign in Using Google</a></button></button><br>
             </form>
         </div>
     </div>
