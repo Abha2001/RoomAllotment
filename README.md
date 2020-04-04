@@ -25,6 +25,10 @@ This is a Room booking system made using Django,HTML,CSS which has admin and nor
 
 `pip install django`
 
+* install python decouple
+
+`pip install python-decouple`
+
 * run migrations
 
 `python manage.py makemigrations`
