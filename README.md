@@ -45,13 +45,6 @@ This is a Room booking system made using Django,HTML,CSS which has admin and nor
 
 python3
 
-## The screenshot of the App
+## The working of the App
 
-### home page:
-![''](RoomBooking/static/images/ss1.png)
-
-### booking list and form
-![''](RoomBooking/static/images/ss2.png)
-
-### adding new slots
-![''](RoomBooking/static/images/ss3.png)
+![''](RoomBooking/static/images/ss.gif)
